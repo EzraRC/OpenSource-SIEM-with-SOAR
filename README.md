@@ -1,2 +1,1 @@
-# OpenSource-SIEM-with-SOAR
-completely open source
+# Wazuh (Elk Stack SIEM) + Shuffle SOAR + pfSense — Starter Repo

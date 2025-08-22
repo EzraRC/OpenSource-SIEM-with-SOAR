@@ -1,0 +1,10 @@
+services:
+  shuffle:
+    image: frikky/shuffle:latest
+    container_name: shuffle
+    ports:
+      - "3001:3001"
+      - "3443:3443"
+    environment:
+      - SHUFFLE_APP=true
+    # For production-grade: deploy backend/frontend/worker separately.

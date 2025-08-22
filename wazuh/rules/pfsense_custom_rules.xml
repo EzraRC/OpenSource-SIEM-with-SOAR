@@ -1,0 +1,11 @@
+<group name="pfSense,attack">
+  <rule id="31508" level="10">
+    <if_group>pfSense</if_group>
+    <match>ET SCAN Nmap Scripting Engine User-Agent Detected</match>
+    <description>Possible Nmap scanning from $srcip</description>
+    <mitre>
+      <id>T1046</id>
+    </mitre>
+    <options>no_full_log</options>
+  </rule>
+</group>

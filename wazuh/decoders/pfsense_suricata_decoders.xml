@@ -1,0 +1,4 @@
+<decoder name="pfsense-suricata">
+  <prematch>suricata</prematch>
+  <regex offset="after_prematch">\[(?P<sig_id>[^\]]+)\] (?P<msg>.+?) \[Classification: (?P<classification>[^\]]+)\] \[Priority: (?P<priority>\d+)\] \{(?P<proto>[^\}]+)\} (?P<srcip>\d+\.\d+\.\d+\.\d+):(?P<srcport>\d+) -&gt; (?P<dstip>\d+\.\d+\.\d+\.\d+):(?P<dstport>\d+)</regex>
+</decoder>

@@ -1,0 +1,39 @@
+{
+  "name": "Enrich & Block via pfSense",
+  "description": "Triggered by Wazuh \u2192 Shuffle Webhook. Enrichs IOC, updates pfSense alias, notifies Slack.",
+  "nodes": [
+    {
+      "id": "input",
+      "type": "trigger",
+      "trigger": "webhook"
+    },
+    {
+      "id": "parse",
+      "type": "function",
+      "code": "return {'ip': workflow.input.alert.get('srcip') if workflow.input.get('alert') else None};"
+    },
+    {
+      "id": "vt",
+      "type": "app",
+      "app_name": "VirusTotal",
+      "action": "IP report"
+    },
+    {
+      "id": "decision",
+      "type": "condition",
+      "condition": "vt.reputation == 'malicious' or vt.malicious_count > 0"
+    },
+    {
+      "id": "pfsense",
+      "type": "app",
+      "app_name": "pfSense",
+      "action": "Add IP to alias"
+    },
+    {
+      "id": "notify",
+      "type": "app",
+      "app_name": "Slack",
+      "action": "Send message"
+    }
+  ]
+}
